@@ -61,6 +61,8 @@ bot.on('message', async message => {
     const args = message.content.split(' ')
     if (args.length < 1) return
 
+    const { prefix, prefixLength } = await GuildController().getPrefix(Number(message.guild?.id) || 0)
+
     // Check if message is a command
     const isCommand = args[0].split('')[0] === process.env.PREFIX ? true : false
 
