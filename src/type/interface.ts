@@ -20,6 +20,10 @@ export interface GuildProps {
      */
     prefix?: string
     /**
+     * The prefix length command of bot in the guild
+     */
+    prefixLength?: number
+    /**
      * The channels commands in the guild
      */
     channels_command?: [],
