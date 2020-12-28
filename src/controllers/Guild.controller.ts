@@ -79,7 +79,7 @@ export default function GuildController() {
     }
 
     // Select specific fields of the guild on DATABASE
-    async function selectField(id: number, values: string[]): Promise<{ channels_chat?: string[], channels_command?: string[] } | undefined> {
+    async function selectField(id: number, values: string[]): Promise<ResponseSelectField | undefined> {
         // Check if exist guild ond DATABASE
         if (await !existGuild(id)) return undefined
 
