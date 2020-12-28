@@ -25,6 +25,25 @@ export interface AddPrefixProps {
      */
     prefix: string[]
 }
+
+/**
+ * Interface to Add Prefix of another bots on DATABASE
+ */
+export interface RemovePrefixProps {
+    /**
+     * The Unique ID of the guild
+     */
+    guildID: number
+    /**
+     * The prefix to remove
+     */
+    removePrefix: string
+    /**
+     * Array with full current prefix
+     */
+    prefix: string[]
+}
+
 /**
  * Interface to Add Channel on DATABASE
  */
