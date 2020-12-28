@@ -1,5 +1,7 @@
+import { Message, Client } from 'discord.js'
+
 export interface RunEvent {
-    message: msg,
+    message: Message,
     bot: Client,
     args: string[]
 }
