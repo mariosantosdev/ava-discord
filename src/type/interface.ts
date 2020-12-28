@@ -8,6 +8,28 @@ export interface RunEvent {
     prefixLength?: number
 }
 
+/**
+ * Interface to Add Channel on DATABASE
+ */
+export interface AddChannelProps {
+    /**
+     * The Unique ID of the guild
+     */
+    guildID: number
+    /**
+     * The ID of the channel to insert
+     */
+    newChannel: string
+    /**
+     * Array with full current channels
+     */
+    channels: string[]
+    /**
+     * Type of channel to be insert
+     */
+    type: 'chat' | 'command'
+}
+
 export interface GuildProps {
     /**
      * The Unique ID of the guild
