@@ -23,7 +23,7 @@ export default function GuildController() {
 
     async function addGuild(values: GuildProps) {
         // Check if guild exists on DATABASE
-        if (await findGuild(values.id)) {
+        if (await existGuild(values.id)) {
             // Update state of guild on DATABASE
             return updateGuild({ id: values.id, deleted: false })
         }
@@ -45,7 +45,7 @@ export default function GuildController() {
 
     async function updateGuild(values: GuildProps) {
         // Check if guild exists on DATABASE
-        if (await !findGuild(values.id)) return
+        if (await !existGuild(values.id)) return
 
         try {
             await getConnection('sqlite')
@@ -64,7 +64,7 @@ export default function GuildController() {
     }
 
     async function getPrefix(id: number): Promise<{ prefix: string, prefixLength: number } | undefined> {
-        if (await !findGuild(id)) return
+        if (await !existGuild(id)) return
 
         const response = await getConnection('sqlite')
             .createQueryBuilder()
