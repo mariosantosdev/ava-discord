@@ -73,19 +73,55 @@ export default async function CheckMessage(event: RunEvent) {
     }
 
     // If not a command and the message was sent on the command channel
-    if (!isCommand() && channelOfMessage() === 'command') {
+    if (!await isCommand() && channelOfMessage() === 'command') {
         if (message.author.bot) return
+        const guildId = Number(message.guild?.id) || 0
 
-        redirectMessage(channels.chat[0])
+        GuildController().selectField(guildId, ['channels_chat'])
+            .then(({ channels_chat }) => {
+                // If not get channels_chat or there's no channel call redirectMessage with null string to return a error
+                if (!channels_chat || channels_chat?.length <= 0) return redirectMessage('')
+
+                // Redirection of message to first channel chat on database
+                redirectMessage(channels_chat[0])
+            })
+
+            // If returned error when get channels on database
+            .catch(() => redirectMessage(''))
     }
 
     // If a command and the message was sent on the chat channel
-    if (isCommand() && channelOfMessage() === 'chat') {
+    if (await isCommand() && channelOfMessage() === 'chat') {
         if (message.author.bot) return
+        const guildId = Number(message.guild?.id) || 0
 
-        redirectMessage(channels.commads[0])
+        GuildController().selectField(guildId, ['channels_command'])
+            .then(({ channels_command }) => {
+                //If not get channels_command or there's no channel call redirectMessage with null string to return a error
+                if (!channels_command || channels_command?.length <= 0) return redirectMessage('')
+
+                // Redirection of message to first channel command on database
+                redirectMessage(channels_command[0])
+            })
+
+            // If returned error when get channels on database
+            .catch(() => redirectMessage(''))
     }
 
     // If a author of message is a bot and message sent on the chat channel
-    if (message.author.bot && channelOfMessage() === 'chat') redirectMessage(channels.commads[0])
+    if (message.author.bot && channelOfMessage() === 'chat') {
+        const guildId = Number(message.guild?.id) || 0
+
+        GuildController().selectField(guildId, ['channels_command'])
+            .then(({ channels_command }) => {
+                //If not get channels_command or there's no channel call redirectMessage with null string to return a error
+                if (!channels_command || channels_command?.length <= 0) return redirectMessage('')
+
+                // Redirection of message to first channel command on database
+                redirectMessage(channels_command[0])
+            })
+
+            // If returned error when get channels on database
+            .catch(() => redirectMessage(''))
+    }
 }
