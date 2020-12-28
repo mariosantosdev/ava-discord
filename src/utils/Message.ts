@@ -1,6 +1,5 @@
 import { RunEvent } from '@type/interface'
 import { MessageEmbed, TextChannel } from 'discord.js'
-import channels from './Channel'
 
 import GuildController from '@controllers/Guild.controller'
 
