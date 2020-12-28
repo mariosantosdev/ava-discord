@@ -11,8 +11,17 @@ export default async function CheckMessage(event: RunEvent) {
     const prefix = event.prefix
 
     // Check message is a command
-        return message.content.split('')[0] === prefix ? true : false
     async function isCommand() {
+        // Get guildId
+        const guildId = Number(message.guild?.id) || 0
+
+        // Get full current prefix
+        const { prefix_redirect }: { prefix_redirect: string[] } = await GuildController().selectField(guildId, ["prefix_redirect"])
+
+        // Split the message and get the first element of message 
+        const firstElementSplitted = message.content.split('')[0]
+        
+        return firstElementSplitted === prefix || prefix_redirect.includes(firstElementSplitted) ? true : false
     }
 
     // Check what's the channel of message
