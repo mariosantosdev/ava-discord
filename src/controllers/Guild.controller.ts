@@ -79,10 +79,35 @@ export default function GuildController() {
         return { prefix: response.prefix, prefixLength: response.prefixLength }
     }
 
+    // Select specific fields of the guild on DATABASE
+    async function selectField(id: number, values: string[]): Promise<{ channels_chat?: string[], channels_command?: string[] } | undefined> {
+        // Check if exist guild ond DATABASE
+        if (await !existGuild(id)) return undefined
+
+        // Insert `guild.` in all fields
+        const fields = values.map(field => `guild.${field}`)
+        const response = {}
+
+        const result = await getConnection('sqlite')
+            .createQueryBuilder()
+            .select(fields)
+            .from(Guild, "guild")
+            .where("guild.id = :id", { id })
+            .getOneOrFail()
+
+        // Add each field passed on parameters the response variable
+        values.forEach(elem => {
+            response[`${elem}`] = result[`${elem}`]
+        })
+
+        return response
+    }
+
     return {
         existGuild,
         addGuild,
         updateGuild,
         getPrefix,
+        selectField
     }
 }
