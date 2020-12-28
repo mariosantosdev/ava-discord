@@ -73,7 +73,7 @@ bot.on('message', async message => {
         if (message.author.bot) return
 
         // Get name command
-        const command = args.shift()!.slice(process.env.PREFIX?.length);
+        const command = args.shift()!.slice(prefixLength);
         
         // Find in commands a command with key of above 
         const commandFile = commands.find((value, key) => key.includes(command));
