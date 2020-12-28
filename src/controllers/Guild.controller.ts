@@ -4,7 +4,7 @@ import { GuildProps } from '@type/interface'
 
 export default function GuildController() {
     // Find guild on DATABASE
-    async function findGuild(id: number) {
+    async function existGuild(id: number, getGuild?: boolean) {
         try {
             // SELECT guild from ID using getConnection with name `sqlite` and 
             const guild = await getConnection('sqlite')
@@ -14,7 +14,7 @@ export default function GuildController() {
                 .where("guild.id = :id", { id })
                 .getOneOrFail()
 
-            return guild
+            return getGuild ? guild : true
         } catch (error) {
             // If guild not found on DATABASE
             return false
@@ -77,7 +77,7 @@ export default function GuildController() {
     }
 
     return {
-        findGuild,
+        existGuild,
         addGuild,
         updateGuild,
         getPrefix
