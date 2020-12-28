@@ -24,10 +24,16 @@ export default async function CheckMessage(event: RunEvent) {
 
     // Check what's the channel of message
     async function channelOfMessage(): Promise<'command' | 'chat' | undefined> {
+        // Get channel of message
         const channel = message.channel.id
-        if (!channel) return
 
-        return channels.commads.includes(channel) ? 'command' : 'chat'
+        // Get full channels commands from database
+        const { channels_command } = await GuildController().selectField(guildID, ["channels_command"])
+
+        // If not get channels commands or not exist channels commands
+        if(!channels_command || channels_command.length <= 0) return
+
+        return channels_command.includes(channel) ? 'command' : 'chat'
     }
 
     // Check message was sent by Ava
