@@ -11,6 +11,9 @@ export default class Guild {
     @Column({ type: 'varchar', default: '$' })
     prefix: string
 
+    @Column({ type: 'integer', nullable: true, default: 1 })
+    prefixLength: number
+
     @Column({ type: 'simple-array', nullable: true })
     channels_command: []
 
