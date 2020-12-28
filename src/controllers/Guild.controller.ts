@@ -56,8 +56,6 @@ export default function GuildController() {
                 .set({ ...values })
                 .where("id = :id", { id: values.id })
                 .execute()
-                .then(console.log)
-                .catch(console.error)
         } catch (error) {
             console.log(error);
 
