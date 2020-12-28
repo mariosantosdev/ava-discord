@@ -67,7 +67,7 @@ bot.on('message', async message => {
     const isCommand = args[0].split('')[0] === prefix ? true : false
 
     // Check the channel of message
-    CheckWhereMessageWasSent({ message, bot, args })
+    CheckWhereMessageWasSent({ message, bot, args, prefix })
 
     if (isCommand) {
         if (message.author.bot) return
