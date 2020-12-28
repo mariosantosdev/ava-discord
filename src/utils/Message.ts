@@ -2,6 +2,8 @@ import { RunEvent } from '@type/interface'
 import { MessageEmbed, TextChannel } from 'discord.js'
 import channels from './Channel'
 
+import GuildController from '@controllers/Guild.controller'
+
 export default function CheckMessage(event: RunEvent) {
     const message = event.message
     const bot = event.bot
