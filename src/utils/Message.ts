@@ -6,10 +6,11 @@ export default function CheckMessage(event: RunEvent) {
     const message = event.message
     const bot = event.bot
     const args = event.args
+    const prefix = event.prefix
 
     // Check message is a command
     function isCommand() {
-        return message.content.split('')[0] === process.env.PREFIX ? true : false
+        return message.content.split('')[0] === prefix ? true : false
     }
 
     // Check what's the channel of message
