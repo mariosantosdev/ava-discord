@@ -67,14 +67,14 @@ bot.on('message', async message => {
     const isCommand = args[0].split('')[0] === prefix ? true : false
 
     // Check the channel of message
-    CheckWhereMessageWasSent({ message, bot, args, prefix })
+    await CheckWhereMessageWasSent({ message, bot, args, prefix })
 
     if (isCommand) {
         if (message.author.bot) return
 
         // Get name command
         const command = args.shift()!.slice(prefixLength);
-        
+
         // Find in commands a command with key of above 
         const commandFile = commands.find((value, key) => key.includes(command));
         if (!commandFile) return
