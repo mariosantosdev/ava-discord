@@ -63,9 +63,23 @@ export default function GuildController() {
         }
     }
 
+    async function getPrefix(id: number): Promise<{ prefix: string, prefixLength: number } | undefined> {
+        if (await !findGuild(id)) return
+
+        const response = await getConnection('sqlite')
+            .createQueryBuilder()
+            .select(["guild.prefix", "guild.prefixLength"])
+            .from(Guild, "guild")
+            .where("guild.id = :id", { id })
+            .getOneOrFail()
+
+        return { prefix: response.prefix, prefixLength: response.prefixLength }
+    }
+
     return {
         findGuild,
         addGuild,
         updateGuild,
+        getPrefix
     }
 }
