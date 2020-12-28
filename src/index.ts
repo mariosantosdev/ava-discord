@@ -64,7 +64,7 @@ bot.on('message', async message => {
     const { prefix, prefixLength } = await GuildController().getPrefix(Number(message.guild?.id) || 0)
 
     // Check if message is a command
-    const isCommand = args[0].split('')[0] === process.env.PREFIX ? true : false
+    const isCommand = args[0].split('')[0] === prefix ? true : false
 
     // Check the channel of message
     CheckWhereMessageWasSent({ message, bot, args })
