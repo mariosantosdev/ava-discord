@@ -15,6 +15,27 @@ const commands: Collection<string[], (event: RunEvent) => any> = new Collection(
 // Emit a message in console when bot is ready
 bot.on('ready', () => console.log('[core] => bot start done'))
 
+// When bot joins a guild
+bot.on('guildCreate', (guild) => {
+    GuildController().addGuild({
+        id: Number(guild.id),
+        name: guild.name,
+        memberCount: guild.memberCount || 0,
+        ownerID: guild.ownerID,
+        region: guild.region,
+        deleted: guild.deleted,
+        joined: guild.joinedTimestamp
+    })
+})
+
+// When bot has been removed from the guild
+bot.on('guildDelete', (guild) => {
+    GuildController().updateGuild({
+        id: Number(guild.id),
+        deleted: guild.deleted
+    })
+})
+
 // Handle commands file
 try {
     // Read all files in path './commands'
