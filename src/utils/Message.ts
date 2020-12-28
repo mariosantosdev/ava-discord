@@ -4,7 +4,7 @@ import channels from './Channel'
 
 import GuildController from '@controllers/Guild.controller'
 
-export default function CheckMessage(event: RunEvent) {
+export default async function CheckMessage(event: RunEvent) {
     const message = event.message
     const bot = event.bot
     const args = event.args
