@@ -80,7 +80,7 @@ export default async function CheckMessage(event: RunEvent) {
     }
 
     // If not a command and the message was sent on the command channel
-    if (!await isCommand() && channelOfMessage() === 'command') {
+    if (!await isCommand() && await channelOfMessage() === 'command') {
         if (message.author.bot) return
 
         GuildController().selectField(guildID, ['channels_chat'])
@@ -97,7 +97,7 @@ export default async function CheckMessage(event: RunEvent) {
     }
 
     // If a command and the message was sent on the chat channel
-    if (await isCommand() && channelOfMessage() === 'chat') {
+    if (await isCommand() && await channelOfMessage() === 'chat') {
         if (message.author.bot) return
 
         GuildController().selectField(guildID, ['channels_command'])
@@ -114,8 +114,7 @@ export default async function CheckMessage(event: RunEvent) {
     }
 
     // If a author of message is a bot and message sent on the chat channel
-    if (message.author.bot && channelOfMessage() === 'chat') {
-
+    if (message.author.bot && await channelOfMessage() === 'chat') {
         GuildController().selectField(guildID, ['channels_command'])
             .then(({ channels_command }) => {
                 //If not get channels_command or there's no channel call redirectMessage with null string to return a error
