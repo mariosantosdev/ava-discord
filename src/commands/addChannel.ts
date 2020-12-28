@@ -9,7 +9,7 @@ async function addChannel({ guildID: id, type, channels, newChannel }: AddChanne
         return await GuildController().updateGuild({ id, channels_chat: [...channels, newChannel] })
 
             // If success
-            .then(() => 'Canal adicionado')
+            .then(() => 'Canal de chat adicionado')
 
             // If Error
             .catch(() => 'Desculpe, não consegui adicionar este canal')
@@ -18,7 +18,7 @@ async function addChannel({ guildID: id, type, channels, newChannel }: AddChanne
         return await GuildController().updateGuild({ id, channels_command: [...channels, newChannel] })
 
             // If success
-            .then(() => 'Canal adicionado')
+            .then(() => 'Canal de comando adicionado')
 
             // If Error
             .catch(() => 'Desculpe, não consegui adicionar este canal')
