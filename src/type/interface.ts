@@ -39,7 +39,7 @@ export interface RemoveChannelProps {
      */
     guildID: number
     /**
-     * The ID of the channel to insert
+     * The ID of the channel to remove
      */
     removeChannel: string
     /**
