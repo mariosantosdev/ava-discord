@@ -11,8 +11,8 @@ export default async function CheckMessage(event: RunEvent) {
     const prefix = event.prefix
 
     // Check message is a command
-    function isCommand() {
         return message.content.split('')[0] === prefix ? true : false
+    async function isCommand() {
     }
 
     // Check what's the channel of message
