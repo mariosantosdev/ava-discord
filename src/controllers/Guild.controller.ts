@@ -52,7 +52,7 @@ export default function GuildController() {
                 .createQueryBuilder()
                 .update(Guild)
                 .set({ ...values })
-                .where("id = :id", {id: values.id})
+                .where("id = :id", { id: values.id })
                 .execute()
                 .then(console.log)
                 .catch(console.error)
@@ -66,6 +66,6 @@ export default function GuildController() {
     return {
         findGuild,
         addGuild,
-        updateGuild
+        updateGuild,
     }
 }
