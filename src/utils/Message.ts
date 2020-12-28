@@ -9,6 +9,7 @@ export default async function CheckMessage(event: RunEvent) {
     const bot = event.bot
     const args = event.args
     const prefix = event.prefix
+    const guildID = Number(message.guild?.id) || 0
 
     // Check message is a command
     async function isCommand() {
