@@ -3,7 +3,7 @@ import Guild from '@models/Guild'
 import { GuildProps } from '@type/interface'
 
 export default function GuildController() {
-    // Find guild on DATABASE
+    // Check if exist guild on DATABASE
     async function existGuild(id: number, getGuild?: boolean) {
         try {
             // SELECT guild from ID using getConnection with name `sqlite` and 
@@ -21,6 +21,7 @@ export default function GuildController() {
         }
     }
 
+    // Add guild on DATABASE
     async function addGuild(values: GuildProps) {
         // Check if guild exists on DATABASE
         if (await existGuild(values.id)) {
@@ -43,6 +44,7 @@ export default function GuildController() {
         }
     }
 
+    // Update a specific guild on DATABASE
     async function updateGuild(values: GuildProps) {
         // Check if guild exists on DATABASE
         if (await !existGuild(values.id)) return
@@ -63,6 +65,7 @@ export default function GuildController() {
         }
     }
 
+    // Get prefix of the guild on DATABASE
     async function getPrefix(id: number): Promise<{ prefix: string, prefixLength: number } | undefined> {
         if (await !existGuild(id)) return
 
