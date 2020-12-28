@@ -9,6 +9,23 @@ export interface RunEvent {
 }
 
 /**
+ * Interface to Add Prefix of another bots on DATABASE
+ */
+export interface AddPrefixProps {
+    /**
+     * The Unique ID of the guild
+     */
+    guildID: number
+    /**
+     * The prefix to insert
+     */
+    newPrefix: string
+    /**
+     * Array with full current prefix
+     */
+    prefix: string[]
+}
+/**
  * Interface to Add Channel on DATABASE
  */
 export interface AddChannelProps {
