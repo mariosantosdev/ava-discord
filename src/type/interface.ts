@@ -50,15 +50,15 @@ export interface GuildProps {
     /**
      * The channels commands in the guild
      */
-    channels_command?: [],
+    channels_command?: string[] | [],
     /**
      * The channels chat in the guild
      */
-    channels_chat?: []
+    channels_chat?: string[] | []
     /**
      * The prefix command of another bots
      */
-    prefix_redirect?: []
+    prefix_redirect?: string[] | []
     /**
      * The full amount of members in this guild
      */
