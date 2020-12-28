@@ -16,6 +16,22 @@ export interface GuildProps {
      */
     name?: string,
     /**
+     * The prefix command of bot in the guild
+     */
+    prefix?: string
+    /**
+     * The channels commands in the guild
+     */
+    channels_command?: [],
+    /**
+     * The channels chat in the guild
+     */
+    channels_chat?: []
+    /**
+     * The prefix command of another bots
+     */
+    prefix_redirect?: []
+    /**
      * The full amount of members in this guild
      */
     memberCount?: number,
