@@ -3,7 +3,9 @@ import { Message, Client } from 'discord.js'
 export interface RunEvent {
     message: Message,
     bot: Client,
-    args: string[]
+    args: string[],
+    prefix?: string,
+    prefixLength?: number
 }
 
 export interface GuildProps {
