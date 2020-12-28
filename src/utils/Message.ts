@@ -23,7 +23,7 @@ export default async function CheckMessage(event: RunEvent) {
     }
 
     // Check what's the channel of message
-    function channelOfMessage(): 'command' | 'chat' | undefined {
+    async function channelOfMessage(): Promise<'command' | 'chat' | undefined> {
         const channel = message.channel.id
         if (!channel) return
 
