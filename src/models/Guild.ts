@@ -11,16 +11,16 @@ export default class Guild {
     @Column({ type: 'varchar', default: '$' })
     prefix: string
 
-    @Column({ type: 'integer', nullable: true, default: 1 })
+    @Column({ type: 'integer', default: 1 })
     prefixLength: number
 
-    @Column({ type: 'simple-array', nullable: true })
+    @Column({ type: 'simple-array', array: true, default: '' })
     channels_command: []
 
-    @Column({ type: 'simple-array', nullable: true })
+    @Column({ type: 'simple-array', array: true, default: '' })
     channels_chat: []
 
-    @Column({ type: 'simple-array', nullable: true })
+    @Column({ type: 'simple-array', array: true, default: '' })
     prefix_redirect: []
 
     @Column('numeric')
