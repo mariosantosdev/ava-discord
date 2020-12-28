@@ -80,6 +80,6 @@ export default function GuildController() {
         existGuild,
         addGuild,
         updateGuild,
-        getPrefix
+        getPrefix,
     }
 }
