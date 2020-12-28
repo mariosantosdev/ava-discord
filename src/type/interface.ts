@@ -30,6 +30,28 @@ export interface AddChannelProps {
     type: 'chat' | 'command'
 }
 
+/**
+ * Interface to Remove Channel on DATABASE
+ */
+export interface RemoveChannelProps {
+    /**
+     * The Unique ID of the guild
+     */
+    guildID: number
+    /**
+     * The ID of the channel to insert
+     */
+    removeChannel: string
+    /**
+     * Array with full current channels
+     */
+    channels: string[]
+    /**
+     * Type of channel to be insert
+     */
+    type: 'chat' | 'command'
+}
+
 export interface GuildProps {
     /**
      * The Unique ID of the guild
