@@ -13,11 +13,8 @@ export default async function CheckMessage(event: RunEvent) {
 
     // Check message is a command
     async function isCommand() {
-        // Get guildId
-        const guildId = Number(message.guild?.id) || 0
-
         // Get full current prefix
-        const { prefix_redirect }: { prefix_redirect: string[] } = await GuildController().selectField(guildId, ["prefix_redirect"])
+        const { prefix_redirect }: { prefix_redirect: string[] } = await GuildController().selectField(guildID, ["prefix_redirect"])
 
         // Split the message and get the first element of message 
         const firstElementSplitted = message.content.split('')[0]
@@ -85,9 +82,8 @@ export default async function CheckMessage(event: RunEvent) {
     // If not a command and the message was sent on the command channel
     if (!await isCommand() && channelOfMessage() === 'command') {
         if (message.author.bot) return
-        const guildId = Number(message.guild?.id) || 0
 
-        GuildController().selectField(guildId, ['channels_chat'])
+        GuildController().selectField(guildID, ['channels_chat'])
             .then(({ channels_chat }) => {
                 // If not get channels_chat or there's no channel call redirectMessage with null string to return a error
                 if (!channels_chat || channels_chat?.length <= 0) return redirectMessage('')
@@ -103,9 +99,8 @@ export default async function CheckMessage(event: RunEvent) {
     // If a command and the message was sent on the chat channel
     if (await isCommand() && channelOfMessage() === 'chat') {
         if (message.author.bot) return
-        const guildId = Number(message.guild?.id) || 0
 
-        GuildController().selectField(guildId, ['channels_command'])
+        GuildController().selectField(guildID, ['channels_command'])
             .then(({ channels_command }) => {
                 //If not get channels_command or there's no channel call redirectMessage with null string to return a error
                 if (!channels_command || channels_command?.length <= 0) return redirectMessage('')
@@ -120,9 +115,8 @@ export default async function CheckMessage(event: RunEvent) {
 
     // If a author of message is a bot and message sent on the chat channel
     if (message.author.bot && channelOfMessage() === 'chat') {
-        const guildId = Number(message.guild?.id) || 0
 
-        GuildController().selectField(guildId, ['channels_command'])
+        GuildController().selectField(guildID, ['channels_command'])
             .then(({ channels_command }) => {
                 //If not get channels_command or there's no channel call redirectMessage with null string to return a error
                 if (!channels_command || channels_command?.length <= 0) return redirectMessage('')
