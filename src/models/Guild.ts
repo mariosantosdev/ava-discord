@@ -15,13 +15,13 @@ export default class Guild {
     prefixLength: number
 
     @Column({ type: 'simple-array', array: true, default: '' })
-    channels_command: []
+    channels_command: string[]
 
     @Column({ type: 'simple-array', array: true, default: '' })
-    channels_chat: []
+    channels_chat: string[]
 
     @Column({ type: 'simple-array', array: true, default: '' })
-    prefix_redirect: []
+    prefix_redirect: string[]
 
     @Column('numeric')
     memberCount: number
