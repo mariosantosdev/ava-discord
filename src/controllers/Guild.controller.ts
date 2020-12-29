@@ -85,9 +85,9 @@ export default function GuildController() {
 
         // Insert `guild.` in all fields
         const fields = values.map(field => `guild.${field}`)
-        const response = {}
+        const response: { [key: string]: any } = {}
 
-        const result = await getConnection('sqlite')
+        const result: { [key: string]: any } = await getConnection('sqlite')
             .createQueryBuilder()
             .select(fields)
             .from(Guild, "guild")
