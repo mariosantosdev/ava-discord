@@ -25,7 +25,7 @@ export default function GuildController() {
     // Add guild on DATABASE
     async function addGuild(values: GuildProps) {
         // Check if guild exists on DATABASE
-        if (await existGuild(values.id)) {
+        if (await existGuild(Number(values.id))) {
             // Update state of guild on DATABASE
             return updateGuild({ id: values.id, deleted: false })
         }
@@ -48,7 +48,7 @@ export default function GuildController() {
     // Update a specific guild on DATABASE
     async function updateGuild(values: GuildProps) {
         // Check if guild exists on DATABASE
-        if (await !existGuild(values.id)) return
+        if (await !existGuild(Number(values.id))) return
 
         try {
             await getConnection('sqlite')
