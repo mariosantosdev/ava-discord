@@ -13,7 +13,8 @@ export default async function CheckMessage(event: RunEvent) {
     // Check message is a command
     async function isCommand() {
         // Get full current prefix
-        const { prefix_redirect }: { prefix_redirect: string[] } = await GuildController().selectField(guildID, ["prefix_redirect"])
+        const { prefix_redirect } = await GuildController().selectField(guildID, ["prefix_redirect"])
+
 
         // Split the message and get the first element of message 
         const firstElementSplitted = message.content.split('')[0]
