@@ -79,9 +79,9 @@ export default function GuildController() {
     }
 
     // Select specific fields of the guild on DATABASE
-    async function selectField(id: number, values: string[]): Promise<ResponseSelectField | undefined> {
+    async function selectField(id: number, values: string[]): Promise<ResponseSelectField> {
         // Check if exist guild ond DATABASE
-        if (await !existGuild(id)) return undefined
+        if (await !existGuild(id)) return {}
 
         // Insert `guild.` in all fields
         const fields = values.map(field => `guild.${field}`)
