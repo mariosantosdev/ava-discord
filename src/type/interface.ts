@@ -2,6 +2,8 @@ import Guild from '@models/Guild'
 import { Message, Client } from 'discord.js'
 import { QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity'
 
+export type GuildProps = QueryDeepPartialEntity<Guild>
+
 export interface RunEvent {
     message: Message,
     bot: Client,
