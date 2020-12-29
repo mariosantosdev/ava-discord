@@ -1,5 +1,5 @@
-import { RunEvent } from '@type/interface'
-import GuildController from '@controllers/Guild.controller'
+import { RunEvent } from '../type/interface'
+import GuildController from '../controllers/Guild.controller'
 
 export async function run(event: RunEvent) {
     // If not exists new prefix

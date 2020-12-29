@@ -1,5 +1,5 @@
-import { RunEvent, RemovePrefixProps } from '@type/interface'
-import GuildController from '@controllers/Guild.controller'
+import { RunEvent, RemovePrefixProps } from '../type/interface'
+import GuildController from '../controllers/Guild.controller'
 
 // Insert channel on DATABASE
 async function removePrefix({ guildID: id, prefix, removePrefix }: RemovePrefixProps) {

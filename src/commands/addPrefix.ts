@@ -1,5 +1,5 @@
-import { RunEvent, AddPrefixProps } from '@type/interface'
-import GuildController from '@controllers/Guild.controller'
+import { RunEvent, AddPrefixProps } from '../type/interface'
+import GuildController from '../controllers/Guild.controller'
 
 // Insert channel on DATABASE
 async function addPrefix({ guildID: id, prefix, newPrefix }: AddPrefixProps) {

@@ -1,13 +1,13 @@
-import '@database/connection'
+import './database/connection'
 import 'dotenv/config'
 import { Client, Collection } from 'discord.js'
 import { readdirSync } from 'fs'
 import path from 'path'
 
-import { RunEvent } from '@type/interface'
+import { RunEvent } from './type/interface'
 
-import CheckWhereMessageWasSent from '@utils/Message'
-import GuildController from '@controllers/Guild.controller'
+import CheckWhereMessageWasSent from './utils/Message'
+import GuildController from './controllers/Guild.controller'
 
 const bot = new Client()
 const commands: Collection<string[], (event: RunEvent) => any> = new Collection()

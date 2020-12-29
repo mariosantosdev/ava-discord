@@ -1,5 +1,5 @@
-import { RunEvent, RemoveChannelProps } from '@type/interface'
-import GuildController from '@controllers/Guild.controller'
+import { RunEvent, RemoveChannelProps } from '../type/interface'
+import GuildController from '../controllers/Guild.controller'
 
 // Insert channel on DATABASE
 async function removeChannel({ guildID: id, type, channels, removeChannel }: RemoveChannelProps) {

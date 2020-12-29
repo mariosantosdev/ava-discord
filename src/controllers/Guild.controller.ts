@@ -1,7 +1,7 @@
 import { getConnection } from 'typeorm'
-import Guild from '@models/Guild'
-import { GuildProps } from '@type/interface'
-import { ResponseSelectField, ResponseGetPrefix } from '@type/response'
+import Guild from '../models/Guild'
+import { GuildProps } from '../type/interface'
+import { ResponseSelectField, ResponseGetPrefix } from '../type/response'
 
 export default function GuildController() {
     // Check if exist guild on DATABASE

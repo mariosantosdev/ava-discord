@@ -1,7 +1,7 @@
-import { RunEvent } from '@type/interface'
+import { RunEvent } from '../type/interface'
 import { MessageEmbed, TextChannel } from 'discord.js'
 
-import GuildController from '@controllers/Guild.controller'
+import GuildController from '../controllers/Guild.controller'
 
 export default async function CheckMessage(event: RunEvent) {
     const message = event.message
