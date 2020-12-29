@@ -1,4 +1,6 @@
+import Guild from '@models/Guild'
 import { Message, Client } from 'discord.js'
+import { QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity'
 
 export interface RunEvent {
     message: Message,
