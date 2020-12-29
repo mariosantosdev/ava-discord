@@ -15,6 +15,8 @@ export default async function CheckMessage(event: RunEvent) {
         // Get full current prefix
         const { prefix_redirect } = await GuildController().selectField(guildID, ["prefix_redirect"])
 
+        // If not get prefixs from database
+        if(!prefix_redirect) return false
 
         // Split the message and get the first element of message 
         const firstElementSplitted = message.content.split('')[0]
