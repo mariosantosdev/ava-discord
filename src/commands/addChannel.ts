@@ -45,7 +45,7 @@ export async function run(event: RunEvent) {
     // If type channel is a chat
     if (event.args[0] === 'chat') {
         // Get current channels of guild
-        const { channels_chat }: {channels_chat: string[]} = await GuildController().selectField(guildID, ["channels_chat"])
+        const { channels_chat } = await GuildController().selectField(guildID, ["channels_chat"])
         // If not get channels chat
         if (!channels_chat) return event.message.reply('Desculpe, não consegui analisar seus canais atual')
 
