@@ -1,7 +1,7 @@
 import { getConnection } from 'typeorm'
 import Guild from '@models/Guild'
 import { GuildProps } from '@type/interface'
-import { ResponseSelectField } from '@type/response'
+import { ResponseSelectField, ResponseGetPrefix } from '@type/response'
 
 export default function GuildController() {
     // Check if exist guild on DATABASE
@@ -65,8 +65,8 @@ export default function GuildController() {
     }
 
     // Get prefix of the guild on DATABASE
-    async function getPrefix(id: number): Promise<{ prefix: string, prefixLength: number } | undefined> {
-        if (await !existGuild(id)) return
+    async function getPrefix(id: number): Promise<ResponseGetPrefix> {
+        if (await !existGuild(id)) return {}
 
         const response = await getConnection('sqlite')
             .createQueryBuilder()
