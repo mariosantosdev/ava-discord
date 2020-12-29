@@ -96,7 +96,7 @@ export default function GuildController() {
 
         // Add each field passed on parameters the response variable
         values.forEach(elem => {
-            response[`${elem}`] = result[`${elem}`]
+            response[elem] = result[elem]
         })
 
         return response
