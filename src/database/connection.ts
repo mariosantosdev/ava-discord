@@ -14,4 +14,4 @@ export default createConnection({
         entitiesDir:  __dirname + "\\..\\models\\**\\*.ts"
     }
 })
-    .then(() => console.log('[database] -> create done'))
+    .then(() => console.log('[database] => create done'))
