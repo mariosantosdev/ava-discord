@@ -1,4 +1,5 @@
 import './database/connection'
+import './server'
 import 'dotenv/config'
 import { Client, Collection } from 'discord.js'
 import { readdirSync } from 'fs'
