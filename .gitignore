@@ -8,3 +8,6 @@ yarn*
 
 # Compiled Files
 *dist
+
+# Extra Files
+*.sqlite
