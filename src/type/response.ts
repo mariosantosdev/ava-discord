@@ -6,6 +6,7 @@ export type ResponseSelectField = {
     channels_chat?: string[]
     channels_command?: string[]
     channel_welcome?: string
+    welcome_message_status?: string
 }
 
 /**
