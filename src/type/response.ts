@@ -5,6 +5,7 @@ export type ResponseSelectField = {
     prefix_redirect?: string[]
     channels_chat?: string[]
     channels_command?: string[]
+    channel_welcome?: string
 }
 
 /**
