@@ -67,7 +67,7 @@ export interface AddChannelProps {
     /**
      * Type of channel to be insert
      */
-    type: 'chat' | 'command'
+    type: 'chat' | 'command' | 'welcome'
 }
 
 /**
