@@ -8,6 +8,7 @@ import path from 'path'
 import { RunEvent } from './type/interface'
 
 import CheckWhereMessageWasSent from './utils/Message'
+import MessageWelcome from './utils/MessageWelcome'
 import GuildController from './controllers/Guild.controller'
 
 const bot = new Client()
