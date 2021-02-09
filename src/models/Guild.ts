@@ -20,7 +20,10 @@ export default class Guild {
     @Column({ type: 'simple-array', array: true, default: '' })
     channels_chat: string[]
 
-    @Column({type: 'varchar', default: ''})
+    @Column({ type: 'boolean', default: true })
+    welcome_message_status: boolean
+
+    @Column({ type: 'varchar', default: '' })
     channel_welcome: string
 
     @Column({ type: 'simple-array', array: true, default: '' })
