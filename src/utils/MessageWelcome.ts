@@ -45,6 +45,12 @@ export default class WelcomeMessage {
 
     // Function to send message
     sendMessage = async () => {
+        // Check if enabled welcome messages in guild
+        const enabledMessages = await this.allowWelcomeMessage()
+
+        // If not permited welcome messages
+        if(!enabledMessages) return
+
         // Get welcome channel
         const channel = await this.getWelcomeChannel()
 
@@ -58,9 +64,17 @@ export default class WelcomeMessage {
         // Fetch id channel from database
         const { channel_welcome } = await GuildController().selectField(Number(this.guild.id), ['channel_welcome'])
         // Check if found any id channel on database
-        if(!channel_welcome) return
+        if (!channel_welcome) return
 
         // Get the TextChannel from id channel and return it
         return this.bot.channels.cache.get(channel_welcome) as TextChannel
+    }
+
+    // Function to check if enabled welcome message in guild
+    allowWelcomeMessage = async () => {
+        // Get status enable welcome message
+        const { welcome_message_status } = await GuildController().selectField(Number(this.guild.id), ['welcome_message_status'])
+
+        return welcome_message_status
     }
 }
