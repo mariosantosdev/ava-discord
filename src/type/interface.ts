@@ -63,7 +63,7 @@ export interface AddChannelProps {
     /**
      * Array with full current channels
      */
-    channels: string[]
+    channels?: string[]
     /**
      * Type of channel to be insert
      */
