@@ -5,6 +5,9 @@ import GuildController from '../controllers/Guild.controller'
 async function addChannel({ guildID: id, type, channels, newChannel }: AddChannelProps) {
     // Check type of channel
     if (type === 'chat') {
+        // Check if exist channels in parameters
+        if(!channels) return 'Desculpe, não encontrei os seus canais atuais de chat'
+
         // Add channel on database with current channels and newCannel
         return await GuildController().updateGuild({ id, channels_chat: [...channels, newChannel] })
 
@@ -14,6 +17,9 @@ async function addChannel({ guildID: id, type, channels, newChannel }: AddChanne
             // If Error
             .catch(() => 'Desculpe, não consegui adicionar este canal')
     } else {
+        // Check if exist channels in parameters
+        if(!channels) return 'Desculpe, não encontrei os seus canais atuais de comando'
+
         // Add channel on database with current channels and newCannel
         return await GuildController().updateGuild({ id, channels_command: [...channels, newChannel] })
 
