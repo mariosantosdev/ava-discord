@@ -17,6 +17,15 @@ const commands: Collection<string[], (event: RunEvent) => any> = new Collection(
 // Emit a message in console when bot is ready
 bot.on('ready', () => console.log('[core] => bot start done'))
 
+// Emit a message when a member joins in guild
+bot.on('guildMemberAdd', (member) => {
+    // Calling class of DrawMessage
+    const drawMessage = new MessageWelcome(bot, member)
+
+    // Execute method to sendMessageWelcome
+    drawMessage.sendMessage()
+})
+
 // When bot joins a guild
 bot.on('guildCreate', (guild) => {
     GuildController().addGuild({
