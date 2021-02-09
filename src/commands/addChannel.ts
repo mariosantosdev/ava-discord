@@ -16,7 +16,7 @@ async function addChannel({ guildID: id, type, channels, newChannel }: AddChanne
 
             // If Error
             .catch(() => 'Desculpe, não consegui adicionar este canal')
-    } else {
+    } else if(type === 'command') {
         // Check if exist channels in parameters
         if(!channels) return 'Desculpe, não encontrei os seus canais atuais de comando'
 
@@ -28,6 +28,15 @@ async function addChannel({ guildID: id, type, channels, newChannel }: AddChanne
 
             // If Error
             .catch(() => 'Desculpe, não consegui adicionar este canal')
+    } else {
+        // Add welcome channel on database
+        return await GuildController().updateGuild({ id, channel_welcome: newChannel })
+
+            // If success
+            .then(() => 'Canal de bem vindo adicionado')
+
+            // If Error
+            .catch(() => 'Desculpe, não consegui adicionar o canal de boas vindas')
     }
 
 }
@@ -89,6 +98,17 @@ export async function run(event: RunEvent) {
         // Send Message
         return event.message.reply(statusInsert)
 
+    // If typing welcome channel
+    } else if(event.args[0] === 'welcome'){
+        // Create welcome channel on database and get status of inserted
+        const statusInsert = await addChannel({
+            guildID,
+            newChannel: channelID,
+            type: 'welcome'
+        })
+
+        // Send message with status
+        return event.message.reply(statusInsert)
     } else {
         // If the type channel not matching with availables
         return event.message.reply('Este tipo de canal é inválido')
