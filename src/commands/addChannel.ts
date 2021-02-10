@@ -7,7 +7,7 @@ async function addChannel({ guildID: id, type, channels, newChannel }: AddChanne
     // Check type of channel
     if (type === 'chat') {
         // Check if exist channels in parameters
-        if(!channels) return 'Desculpe, não encontrei os seus canais atuais de chat'
+        if (!channels) return 'Desculpe, não encontrei os seus canais atuais de chat'
 
         // Add channel on database with current channels and newCannel
         return await GuildController().updateGuild({ id, channels_chat: [...channels, newChannel] })
@@ -17,9 +17,9 @@ async function addChannel({ guildID: id, type, channels, newChannel }: AddChanne
 
             // If Error
             .catch(() => 'Desculpe, não consegui adicionar este canal')
-    } else if(type === 'command') {
+    } else if (type === 'command') {
         // Check if exist channels in parameters
-        if(!channels) return 'Desculpe, não encontrei os seus canais atuais de comando'
+        if (!channels) return 'Desculpe, não encontrei os seus canais atuais de comando'
 
         // Add channel on database with current channels and newCannel
         return await GuildController().updateGuild({ id, channels_command: [...channels, newChannel] })
@@ -47,6 +47,9 @@ export async function run(event: RunEvent) {
     // If not exists new prefix
     if (!event.args[0]) return event.message.reply('Adicione um tipo de canal')
     if (!event.args[1]) return event.message.reply('Adicione o id do canal')
+
+    // Check if the author of message has permition to execute command
+    if (!event.message.member || !MANAGE_CHANNELS(event.message.member)) return event.message.reply('Você não pode utilizar esse comando!')
 
     // Get UNIQUE guild ID
     const guildID = Number(event.message.guild?.id) || 0
@@ -100,7 +103,7 @@ export async function run(event: RunEvent) {
         return event.message.reply(statusInsert)
 
     // If typing welcome channel
-    } else if(event.args[0] === 'welcome'){
+    } else if (event.args[0] === 'welcome') {
         // Create welcome channel on database and get status of inserted
         const statusInsert = await addChannel({
             guildID,
