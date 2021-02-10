@@ -1,9 +1,13 @@
 import { RunEvent } from '../type/interface'
 import GuildController from '../controllers/Guild.controller'
+import { MANAGE_GUILD } from '../utils/Permitions'
 
 export async function run(event: RunEvent) {
     // If not exists new prefix
     if (!event.args[0]) return event.message.reply('Adicione um novo prefixo para ser alterado')
+
+    // Check if the author of message has permition to execute command
+    if(!event.message.member || !MANAGE_GUILD(event.message.member)) return event.message.reply('Você não pode utilizar esse comando!')
 
     // guild id to update prefix
     const guildID = Number(event.message.guild?.id) || 0

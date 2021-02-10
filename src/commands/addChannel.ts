@@ -1,5 +1,6 @@
 import { RunEvent, AddChannelProps } from '../type/interface'
 import GuildController from '../controllers/Guild.controller'
+import { MANAGE_CHANNELS } from '../utils/Permitions'
 
 // Insert channel on DATABASE
 async function addChannel({ guildID: id, type, channels, newChannel }: AddChannelProps) {
