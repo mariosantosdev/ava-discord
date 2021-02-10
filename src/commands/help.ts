@@ -15,10 +15,7 @@ function sendHelpMessage(channel: TextChannel | DMChannel | NewsChannel, p?: str
             { name: `${prefix}removePrefix <prefix>`, value: 'Comando para remover prefixo usado para redirecionar mensagens.' },
             { name: `${prefix}kick <idMember | mention> <?motivo>`, value: 'Comando para kickar um membro.' },
             { name: `${prefix}ban <idMember | mention> <?motivo>`, value: 'Comando para banir um membro.' },
-            { name: `${prefix}prefix <prefix>`, value: 'Comando para alterar o prefixo do bot.' },
-            { name: `${prefix}welcomeMessage`, value: 'Comando para definir se deseja usar ou não mensagens de boas vindas.' },
             { name: `${prefix}createInvite`, value: 'Comando para criar um convite para o servidor.' },
-            { name: `${prefix}help`, value: 'Comando para ver todos os comandos.' },
         ])
 
     return channel.send(embed)
