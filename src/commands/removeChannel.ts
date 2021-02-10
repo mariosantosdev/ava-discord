@@ -37,12 +37,12 @@ async function removeChannel({ guildID: id, type, channels, removeChannel }: Rem
 
 // Run command
 export async function run(event: RunEvent) {
+    // Check if the author of message has permition to execute command
+    if (!event.message.member || !MANAGE_CHANNELS(event.message.member)) return event.message.reply('Você não pode utilizar esse comando!')
+    
     // If not exists new prefix
     if (!event.args[0]) return event.message.reply('Especifiue o tipo de canal você quer remover')
     if (!event.args[1]) return event.message.reply('Especifique o id do canal para ser removido')
-
-    // Check if the author of message has permition to execute command
-    if (!event.message.member || !MANAGE_CHANNELS(event.message.member)) return event.message.reply('Você não pode utilizar esse comando!')
 
     // Get UNIQUE guild ID
     const guildID = Number(event.message.guild?.id) || 0

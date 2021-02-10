@@ -44,12 +44,12 @@ async function addChannel({ guildID: id, type, channels, newChannel }: AddChanne
 
 // Run command
 export async function run(event: RunEvent) {
+    // Check if the author of message has permition to execute command
+    if (!event.message.member || !MANAGE_CHANNELS(event.message.member)) return event.message.reply('Você não pode utilizar esse comando!')
+
     // If not exists new prefix
     if (!event.args[0]) return event.message.reply('Adicione um tipo de canal')
     if (!event.args[1]) return event.message.reply('Adicione o id do canal')
-
-    // Check if the author of message has permition to execute command
-    if (!event.message.member || !MANAGE_CHANNELS(event.message.member)) return event.message.reply('Você não pode utilizar esse comando!')
 
     // Get UNIQUE guild ID
     const guildID = Number(event.message.guild?.id) || 0

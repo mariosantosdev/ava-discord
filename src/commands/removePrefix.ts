@@ -22,11 +22,11 @@ async function removePrefix({ guildID: id, prefix, removePrefix }: RemovePrefixP
 
 // Run command
 export async function run(event: RunEvent) {
-    // If not exists new prefix
-    if (!event.args[0]) return event.message.reply('Especifique o prefixo para ser removido')
-
     // Check if the author of message has permition to execute command
     if (!event.message.member || !MANAGE_CHANNELS(event.message.member)) return event.message.reply('Você não pode utilizar esse comando!')
+    
+    // If not exists new prefix
+    if (!event.args[0]) return event.message.reply('Especifique o prefixo para ser removido')
 
     // Get prefix to remove
     const prefix = event.args[0]

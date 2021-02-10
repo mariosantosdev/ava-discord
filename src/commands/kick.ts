@@ -5,20 +5,17 @@ import { KICK_MEMBER } from '../utils/Permitions'
 const formatTarget = (target: string) => target.replace(/[<@!>]/g, '')
 
 export function run(event: RunEvent) {
+    // Check if member has a permition to kick members
+    if (!event.message.member || !KICK_MEMBER(event.message.member)) return event.message.reply(`Você não tem permissão para usar esse comando`)
+
     // Check if a member is mentioned
     if(!event.args[0]) return event.message.reply(`Você não informou um membro alvo`)
-
-    // Get member author of message
-    const member = event.message.member
 
     // Get formatedTarget
     const formatedTarget = formatTarget(event.args[0])
 
     // Get reason of kick
     const reason = event.args.slice(1).join(' ')
-
-    // Check if member has a permition to kick members
-    if (!member || !KICK_MEMBER(member)) return event.message.reply(`Você não tem permissão para usar esse comando`)
 
     // Get a GuildMember from target id
     const targetMember = event.message.guild?.members.cache.get(formatedTarget)

@@ -3,11 +3,11 @@ import { RunEvent } from "../type/interface";
 import { MANAGE_GUILD } from '../utils/Permitions'
 
 export async function run(event: RunEvent) {
-    // Get id of guild
-    const guildID = Number(event.message.guild?.id || 0)
-
     // Check if the author of message has permition to execute command
     if(!event.message.member || !MANAGE_GUILD(event.message.member)) return event.message.reply('Você não pode utilizar esse comando!')
+    
+    // Get id of guild
+    const guildID = Number(event.message.guild?.id || 0)
 
     // Get status enable welcome message
     const { welcome_message_status } = await GuildController().selectField(guildID, ['welcome_message_status'])

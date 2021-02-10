@@ -16,11 +16,11 @@ async function addPrefix({ guildID: id, prefix, newPrefix }: AddPrefixProps) {
 
 // Run command
 export async function run(event: RunEvent) {
-    // If not exists new prefix
-    if (!event.args[0]) return event.message.reply('Especifique o prefixo para ser adicionado')
-
     // Check if the author of message has permition to execute command
     if(!event.message.member || !MANAGE_CHANNELS(event.message.member)) return event.message.reply('Você não pode utilizar esse comando!')
+
+    // If not exists new prefix
+    if (!event.args[0]) return event.message.reply('Especifique o prefixo para ser adicionado')
 
     // Get prefix to insert
     const prefix = event.args[0]
