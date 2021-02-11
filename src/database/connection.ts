@@ -2,7 +2,6 @@ import { createConnection } from 'typeorm'
 import path from 'path'
 
 export default createConnection({
-    name: "sqlite",
     type: "sqlite",
     database: path.resolve(__dirname, "database.sqlite"),
     synchronize: true,
