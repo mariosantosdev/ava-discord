@@ -9,7 +9,7 @@ export default function GuildController() {
         // SELECT guild from ID using getConnection with name `sqlite` and 
         const guild = await getConnection()
             .createQueryBuilder()
-            .select('id')
+            .select('guild')
             .from(Guild, 'guild')
             .where("guild.id = :id", { id })
             .getOne()
