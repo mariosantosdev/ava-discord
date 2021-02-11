@@ -8,12 +8,12 @@ export default function GuildController() {
     async function existGuild(id: number, getGuild?: boolean) {
         try {
             // SELECT guild from ID using getConnection with name `sqlite` and 
-            const guild = await getConnection('sqlite')
                 .createQueryBuilder()
                 .select('guild')
                 .from(Guild, "guild")
                 .where("guild.id = :id", { id })
                 .getOneOrFail()
+        const guild = await getConnection()
 
             return getGuild ? guild : true
         } catch (error) {
@@ -32,7 +32,7 @@ export default function GuildController() {
 
         try {
             // Insert new guild using getConnection with name `sqlite`
-            await getConnection('sqlite')
+            await getConnection()
                 .createQueryBuilder()
                 .insert()
                 .into(Guild)
@@ -51,7 +51,7 @@ export default function GuildController() {
         if (await !existGuild(Number(values.id))) return
 
         try {
-            await getConnection('sqlite')
+            await getConnection()
                 .createQueryBuilder()
                 .update(Guild)
                 .set({ ...values })
@@ -68,7 +68,7 @@ export default function GuildController() {
     async function getPrefix(id: number): Promise<ResponseGetPrefix> {
         if (await !existGuild(id)) return {}
 
-        const response = await getConnection('sqlite')
+        const response = await getConnection()
             .createQueryBuilder()
             .select(["guild.prefix", "guild.prefixLength"])
             .from(Guild, "guild")
@@ -87,7 +87,7 @@ export default function GuildController() {
         const fields = values.map(field => `guild.${field}`)
         const response: { [key: string]: any } = {}
 
-        const result: { [key: string]: any } = await getConnection('sqlite')
+        const result: { [key: string]: any } = await getConnection()
             .createQueryBuilder()
             .select(fields)
             .from(Guild, "guild")
