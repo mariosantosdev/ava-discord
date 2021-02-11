@@ -7,7 +7,7 @@ export default createConnection({
     synchronize: true,
     logging: false,
     entities: [
-        __dirname + "\\..\\models\\**\\*.ts"
+        __dirname + "\\..\\models\\*{.ts,.js}"
     ],
 })
     .then(() => console.log('[database] => create done'))
