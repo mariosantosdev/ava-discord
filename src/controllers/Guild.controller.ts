@@ -5,21 +5,17 @@ import { ResponseSelectField, ResponseGetPrefix } from '../type/response'
 
 export default function GuildController() {
     // Check if exist guild on DATABASE
-    async function existGuild(id: number, getGuild?: boolean) {
-        try {
-            // SELECT guild from ID using getConnection with name `sqlite` and 
-                .createQueryBuilder()
-                .select('guild')
-                .from(Guild, "guild")
-                .where("guild.id = :id", { id })
-                .getOneOrFail()
+    async function existGuild(id: number) {
+        // SELECT guild from ID using getConnection with name `sqlite` and 
         const guild = await getConnection()
+            .createQueryBuilder()
+            .select('id')
+            .from(Guild, 'guild')
+            .where("guild.id = :id", { id })
+            .getOne()
 
-            return getGuild ? guild : true
-        } catch (error) {
-            // If guild not found on DATABASE
-            return false
-        }
+        // Return wheter exist guild
+        return guild ? true : false
     }
 
     // Add guild on DATABASE
@@ -66,14 +62,16 @@ export default function GuildController() {
 
     // Get prefix of the guild on DATABASE
     async function getPrefix(id: number): Promise<ResponseGetPrefix> {
-        if (await !existGuild(id)) return {}
+        if (await !existGuild(Number(id))) return { prefix: '$', prefixLength: 1 }
 
         const response = await getConnection()
             .createQueryBuilder()
             .select(["guild.prefix", "guild.prefixLength"])
             .from(Guild, "guild")
             .where("guild.id = :id", { id })
-            .getOneOrFail()
+            .getOne()
+
+        if(!response) return { prefix: '$', prefixLength: 1 }
 
         return { prefix: response.prefix, prefixLength: response.prefixLength }
     }
@@ -87,12 +85,14 @@ export default function GuildController() {
         const fields = values.map(field => `guild.${field}`)
         const response: { [key: string]: any } = {}
 
-        const result: { [key: string]: any } = await getConnection()
+        const result: { [key: string]: any } | undefined = await getConnection()
             .createQueryBuilder()
             .select(fields)
             .from(Guild, "guild")
             .where("guild.id = :id", { id })
-            .getOneOrFail()
+            .getOne()
+
+        if(!result) return {}
 
         // Add each field passed on parameters the response variable
         values.forEach(elem => {
